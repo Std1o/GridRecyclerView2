@@ -30,12 +30,12 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.SimpleView
     }
 
     @Override
-    public void onBindViewHolder(final SimpleViewHolder holder, int position) {
+    public void onBindViewHolder(SimpleViewHolder holder, final int position) {
         holder.tvTitle.setText(list.get(position));
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, list.get(holder.getAdapterPosition()), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, list.get(position), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -43,6 +43,16 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.SimpleView
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 
     class SimpleViewHolder extends RecyclerView.ViewHolder {
